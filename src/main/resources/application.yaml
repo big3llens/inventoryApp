@@ -1,0 +1,13 @@
+server:
+  port: 7979
+  servlet:
+    context-path: /inventoryApp
+spring:
+  datasource:
+    url: jdbc:postgresql://10.160.3.232:5432/demo
+    driver-class-name: org.postgresql.Driver
+    username: postgres
+    password: 5432
+
+    jpa:
+      show-sql: true
