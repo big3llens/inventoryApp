@@ -3,13 +3,16 @@ package ru.bfad.bfaApps.inventoryApp.models;
 import com.fasterxml.jackson.annotation.JsonIdentityInfo;
 import com.fasterxml.jackson.annotation.ObjectIdGenerators;
 import lombok.Data;
+import lombok.NoArgsConstructor;
+
 
 import javax.persistence.*;
 import java.util.List;
 
 @Entity
-@Table(schema = "public", name = "consumables")
+@Table( name = "consumables")
 @Data
+@NoArgsConstructor
 @JsonIdentityInfo(
         generator = ObjectIdGenerators.PropertyGenerator.class,
         property = "consumableId")
@@ -23,6 +26,10 @@ public class Consumable {
     @Column(name = "consumable_name")
     private String consumableName;
 
-    @ManyToMany(mappedBy = "consumables")
+    @ManyToMany(mappedBy = "consumables", fetch = FetchType.LAZY)
     private List<Inventory> inventories;
+
+    public Consumable(String consumableName) {
+        this.consumableName = consumableName;
+    }
 }

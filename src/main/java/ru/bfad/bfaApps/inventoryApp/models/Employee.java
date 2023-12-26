@@ -26,8 +26,8 @@ public class Employee {
     @Column(name = "department")
     private String department;
 
-//    @JsonManagedReference
-    @ManyToMany
+    @JsonManagedReference
+    @ManyToMany(fetch = FetchType.LAZY)
     @JoinTable(
             name = "employee_inventory",
             joinColumns = { @JoinColumn(name = "employee_id")},
